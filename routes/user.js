@@ -48,7 +48,11 @@ router.post('/edit-profile',function(req,res,next){
 });
 
 router.get('/signup', function(req,res){
-    res.render('accounts/signup',{errors: req.flash('errors')});
+    if(!req.user){
+       res.render('accounts/signup',{errors: req.flash('errors')});
+    }else{
+      res.redirect('/');
+    }
 });
 
 router.post('/signup',function(req,res,next){
